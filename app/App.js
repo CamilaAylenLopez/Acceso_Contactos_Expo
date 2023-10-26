@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, View, Text, FlatList } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import * as Contacts from 'expo-contacts';
 
-export default Mainscreen = () => {
-    const [contacts, setContacts] = useEffect()
+export default function App() {
+  const [contacts, setContacts] = useEffect()
     useEffect(() => {
         (async () => {
             const { status } = await Contacts.requestPermissionsAsync();
@@ -12,12 +12,14 @@ export default Mainscreen = () => {
                     fields: [Contacts.Fields.Emails],
                 });
 
+
                 if (data.length > 0) {
                     setContacts(data)
                 }
             }
         })();
     }, []);
+
 
     return (
         <FlatList
@@ -36,3 +38,11 @@ export default Mainscreen = () => {
     );
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
