@@ -11,6 +11,7 @@ export default function App() {
       if (status === 'granted') {
         const { data } = await Contacts.getContactsAsync({
           fields: [Contacts.Fields.Emails],
+          fields: [Contacts.Fields.PhoneNumbers],
         })
         if (data.length > 0) {
           setContacts(data)
